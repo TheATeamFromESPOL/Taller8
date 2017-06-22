@@ -27,7 +27,21 @@ int main(int argc, char *argv[])
 		error("couldn't open port");
 		return -1;
 	}
-
+	char buff =*argv[1];
+	if (buff =='1'||buff=='0'){
+		while(1){
+			write(fd,&buff,1);	
+		}
+	}else if(buff=='i'){
+		write(fd,&buff,1);
+		char *cadena = (char*)read (fd,&buff,sizeof(char));
+		print("mod: %i\n",cadena);
+	}
+	else if(buff=='t'){
+		write(fd,&buff,1);
+		long int cadena = read (fd,&buff,sizeof(int));
+		print("mod: %i\n",cadena);
+	}
 	
 	close( fd );
 	return 0;	
