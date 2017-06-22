@@ -33,14 +33,16 @@ int main(int argc, char *argv[])
 			write(fd,&buff,1);	
 		}
 	}else if(buff=='i'){
+		while(1){
 		write(fd,&buff,1);
 		char *cadena = (char*)read (fd,&buff,sizeof(char));
-		print("mod: %i\n",cadena);
+		printf("mod: %s\n",cadena);
+		}	
 	}
 	else if(buff=='t'){
 		write(fd,&buff,1);
 		long int cadena = read (fd,&buff,sizeof(int));
-		print("mod: %i\n",cadena);
+		printf("temp: %li\n",cadena);
 	}
 	
 	close( fd );
