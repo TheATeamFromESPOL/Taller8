@@ -33,16 +33,30 @@ int main(int argc, char *argv[])
 			write(fd,&buff,1);	
 		}
 	}else if(buff=='i'){
-		while(1){
+		int i;		
+		char cad[5];		
+		for(i = 0; i<5; i++){
 		write(fd,&buff,1);
-		char *cadena = (char*)read (fd,&buff,sizeof(char));
-		printf("mod: %s\n",cadena);
-		}	
+		cad[i] = read (fd,&buff,sizeof(char));
+		usleep(100000);
+		}
+		printf("mod: %s\n",cad);
 	}
 	else if(buff=='t'){
+		long int num[20]={};
+		int i;
+		for(i = 0; i<20; i++){
 		write(fd,&buff,1);
-		long int cadena = read (fd,&buff,sizeof(int));
-		printf("temp: %li\n",cadena);
+		long int num[i] = read (fd,&buff,sizeof(long int));
+		usleep(100000);
+		}
+		float prom;
+		float suma;
+		for(int j=0;j<20;j++){
+			suma += num[i];
+		}
+		prom = suma / 20;
+		printf("promedio: %f\n",prom);
 	}
 	
 	close( fd );
